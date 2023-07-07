@@ -19,18 +19,16 @@ public class C04_ConfigurationDosyasiKullanma {
            yanlis kullanici adi, yanlis sifre... gibi datalar
      */
     @Test
-    public  void test01(){
-
+    public void test01(){
         Driver.getDriver().get(ConfigReader.getProperty("amazonUrl"));
 
         AmazonPage amazonPage = new AmazonPage();
-        amazonPage.aramaKutusu.sendKeys(ConfigReader.getProperty("amazonAranacakKelime"+ Keys.ENTER));
+        amazonPage.aramaKutusu.sendKeys(ConfigReader.getProperty("amazonAranacakKelime")+Keys.ENTER);
 
-        String expectedIcerik = ConfigReader.getProperty("amazonAranacakKelime");
+        String expectedIcerik = ConfigReader.getProperty("amazonExpectedIcerik");
         String actualSonucYazisi = amazonPage.aramaSonucuElementi.getText();
 
         Assert.assertTrue(actualSonucYazisi.contains(expectedIcerik));
-
         Driver.closeDriver();
     }
 }
